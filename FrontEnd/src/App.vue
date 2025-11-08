@@ -5,10 +5,13 @@
     </div>
 
     <div class="navbar__links">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/contact">Contact</router-link>
+      <router-link to="/">Inicio</router-link>
+      <router-link to="/que-es-ia">Entiende la IA</router-link>
+      <router-link to="/como-funciona-un-llm">Explora un LLM</router-link>
+      <router-link to="/entorno-academico">Aplícalo al estudio</router-link>
+      <router-link to="/pensamiento-critico">Piensa por ti</router-link>
     </div>
+
   </nav>
 
   <router-view />

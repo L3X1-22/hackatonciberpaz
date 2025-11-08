@@ -8,14 +8,41 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
+    path: "/que-es-ia",
+    name: "Que es IA",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(/* webpackChunkName: "about" */ "../views/QueEsIAView"),
   },
+    {
+    path: "/como-funciona-un-llm",
+    name: "Como funciona un LLM",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/ComoFuncionaLLMView"),
+  },
+    {
+    path: "/entorno-academico",
+    name: "Entorno academico",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/EntornoAcadémico"),
+  },
+    {
+    path: "/pensamiento-critico",
+    name: "Pensamiento critico",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/ComoFuncionaLLMView"),
+  }
 ];
 
 const router = createRouter({
