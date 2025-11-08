@@ -2,18 +2,18 @@
   <div class="pensamiento-critico">
     <div class="background__overlay"></div>
 
-    <div class="grid-layout">
+        <div class="grid-layout" v-if="!loading && !error">
       <div
-        v-for="block in contentBlocks"
-        :key="block.id"
+        v-for="(item, index) in filteredBlocks"
+        :key="item.id"
         class="grid-cell"
       >
         <FeatureCard
           class="round-img"
-          :title="block.title"
-          :description="block.description"
-          :image="block.image_url"
-          :alt="block.image_alt"
+          :title="item.title"
+          :description="item.description"
+          :image="item.image_url"
+          :alt-text="item.image_alt"
         />
       </div>
     </div>
@@ -21,23 +21,34 @@
 </template>
 
 <script>
-import axios from 'axios'
 import FeatureCard from '@/components/ui/FeatureCard.vue'
+import api from '@/services/api.js'
 
 export default {
   name: 'PensamientoCriticoView',
   components: { FeatureCard },
-  data() {
+ data() {
     return {
-      contentBlocks: []
+      contentBlocks: [],
+      loading: true,
+      error: null
     }
   },
-  async created() {
+  computed: {
+    filteredBlocks() {
+      return this.contentBlocks.filter(
+        block => block.section === 'pensamiento-critico'
+      )
+    }
+  },
+  async mounted() {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/content/?section=pensamiento-critico')
+      const response = await api.get('content-blocks/?section=pensamiento-critico')
       this.contentBlocks = response.data
-    } catch (error) {
-      console.error('Error cargando los bloques de pensamiento crítico:', error)
+    } catch (err) {
+      this.error = err.message || 'Error al cargar el contenido'
+    } finally {
+      this.loading = false
     }
   }
 }

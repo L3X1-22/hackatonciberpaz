@@ -3,23 +3,15 @@
     <div class="footer__content">
       <p class="footer__info">
         Proyecto <strong>IA Consciente</strong> — desarrollado para la
-        <span class="highlight">Hackatón Ciberpaz 2025</span> del Ministerio TIC de Colombia.
+        <a class="highlight" href="https://ciberpaz.gov.co/">Hackatón Ciberpaz 2025</a> del Ministerio TIC de Colombia.
       </p>
 
       <p class="footer__meta">
-        <a
-          href="https://github.com/L3X1-22/IA-consciente"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="https://github.com/L3X1-22/IA-consciente" target="_blank" rel="noopener noreferrer">
           Repositorio en GitHub
         </a>
         &nbsp;•&nbsp;
-        <a
-          href="https://creativecommons.org/licenses/by-sa/4.0/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">
           Licencia CC BY-SA 4.0
         </a>
         &nbsp;•&nbsp;
@@ -89,8 +81,14 @@ export default {
 }
 
 .highlight {
-  color: var(--pink-support);
+  color: var(--purple-accent);
   font-weight: 600;
+  transition: color 0.6s ease, transform 0.3s ease;
+}
+
+.highlight:hover {
+  transform: scale(0.96);
+  color: var(--pink-support, #ff6bcb);
 }
 
 /* Responsivo */
