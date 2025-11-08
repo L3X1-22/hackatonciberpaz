@@ -38,7 +38,7 @@ ENV/
 *.ini
 
 # Archivos de base de datos SQLite
-db.sqlite3
+#db.sqlite3  <-- comentado para que la base de datos con la funcionalidad de la pagina esté en el repo, unicamente está comentado por motivos de la hackaton
 db.sqlite3-journal
 
 # Archivos de migración innecesarios (opcional)
