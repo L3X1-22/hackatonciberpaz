@@ -81,9 +81,9 @@ Los usuarios podrán asegurar un **Compromiso Digital** con principios como:
 
 ## Plan técnico y comunicativo
 
-- **Tecnologías:** 
+- **Tecnologías:** vue.js y Django
 - **Alojamiento:** GitHub   
-- **Características:** Materiales educativos, conexión directa con el módulo CiberPaz  
+- **Características:** Materiales educativos 
 - **Difusión:** campañas escolares, redes sociales y alianzas con docentes
 
 ---
