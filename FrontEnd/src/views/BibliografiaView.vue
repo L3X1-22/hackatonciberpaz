@@ -1,6 +1,6 @@
 <template>
   <div class="bibliografia-view">
-    <h1>📚 Bibliografía</h1>
+    <h1>Bibliografía</h1>
 
     <div v-if="loading" class="loading">Cargando bibliografía...</div>
     <div v-else-if="error" class="error">
@@ -54,7 +54,7 @@ export default {
 
 <style scoped>
 .bibliografia-view {
-  padding-top: var(--space-12);
+  padding-top: 120px;
   padding-bottom: var(--space-8);
   background: var(--bg-primary);
   color: var(--text-primary);

@@ -10,6 +10,7 @@
       <router-link to="/como-funciona-un-llm">Explora un LLM</router-link>
       <router-link to="/entorno-academico">Aplícalo al estudio</router-link>
       <router-link to="/pensamiento-critico">Piensa por ti</router-link>
+      <router-link to="/bibliografia">Referencias</router-link>
     </div>
 
   </nav>

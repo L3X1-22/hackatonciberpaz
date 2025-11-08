@@ -2,14 +2,14 @@
   <div class="pensamiento-critico">
     <div class="background__overlay"></div>
 
-        <div class="grid-layout" v-if="!loading && !error">
+    <div class="grid-layout" v-if="!loading && !error">
       <div
         v-for="(item, index) in filteredBlocks"
         :key="item.id"
         class="grid-cell"
       >
         <FeatureCard
-          class="round-img"
+          class="feature-card-wrapper"
           :title="item.title"
           :description="item.description"
           :image="item.image_url"
@@ -27,7 +27,7 @@ import api from '@/services/api.js'
 export default {
   name: 'PensamientoCriticoView',
   components: { FeatureCard },
- data() {
+  data() {
     return {
       contentBlocks: [],
       loading: true,
@@ -67,7 +67,6 @@ export default {
 .grid-layout {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(250px, auto);
   gap: 2rem;
   padding: 3rem;
   position: relative;
@@ -77,27 +76,92 @@ export default {
 .grid-cell {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch; /* Cambiado para que las tarjetas se estiren */
 }
 
-/* Imágenes redondeadas solo aquí */
-.round-img .feature-card__image-container {
-  border-radius: 50%;
-  width: 180px;
+.feature-card-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+/* Estilos para garantizar tamaño consistente */
+.feature-card-wrapper ::v-deep .feature-card {
+  width: 100%;
+  height: 100%;
+  min-height: 350px; /* Altura mínima consistente */
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card-wrapper ::v-deep .feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.feature-card-wrapper ::v-deep .feature-card__image-container {
+  width: 100%;
   height: 180px;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  flex-shrink: 0; /* Evita que se reduzca */
 }
 
-.round-img .feature-card__image {
+.feature-card-wrapper ::v-deep .feature-card__image {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.feature-card-wrapper ::v-deep .feature-card__content {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.feature-card-wrapper ::v-deep .feature-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.feature-card-wrapper ::v-deep .feature-card__description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #cccccc;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Responsivo */
 @media (max-width: 1024px) {
   .grid-layout {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: minmax(200px, auto);
+    gap: 1.5rem;
     padding: 2rem;
+  }
+  
+  .feature-card-wrapper ::v-deep .feature-card {
+    min-height: 320px;
+  }
+  
+  .feature-card-wrapper ::v-deep .feature-card__image-container {
+    height: 160px;
+    width: 160px;
   }
 }
 
@@ -106,10 +170,17 @@ export default {
     grid-template-columns: 1fr;
     gap: 1.5rem;
     padding: 1.5rem;
+    max-width: 400px;
+    margin: 0 auto;
   }
-
-  .grid-cell {
-    justify-content: center;
+  
+  .feature-card-wrapper ::v-deep .feature-card {
+    min-height: 300px;
+  }
+  
+  .feature-card-wrapper ::v-deep .feature-card__image-container {
+    height: 140px;
+    width: 140px;
   }
 }
 </style>

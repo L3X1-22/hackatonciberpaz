@@ -9,7 +9,7 @@
         class="grid-cell"
       >
         <FeatureCard
-          class="round-img"
+          class="feature-card-wrapper"
           :title="item.title"
           :description="item.description"
           :image="item.image_url"
@@ -72,7 +72,6 @@ export default {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(250px, auto);
   gap: 2rem;
   padding: 3rem;
   z-index: 2;
@@ -82,19 +81,85 @@ export default {
 .grid-cell {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch; /* Cambiado para estirar las tarjetas */
 }
 
-/* Redondear imágenes SOLO para este view */
-.round-img .feature-card__image-container {
+.feature-card-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+/* Estilos para garantizar tamaño consistente */
+.feature-card-wrapper ::v-deep .feature-card {
+  width: 100%;
+  height: 100%;
+  min-height: 380px; /* Altura mínima consistente */
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(30, 30, 30, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-card-wrapper ::v-deep .feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Imágenes redondeadas SOLO para este view */
+.feature-card-wrapper ::v-deep .feature-card__image-container {
   border-radius: 50%;
   width: 180px;
   height: 180px;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  flex-shrink: 0; /* Evita que se reduzca */
+  border: 3px solid rgba(255, 255, 255, 0.1);
 }
 
-.round-img .feature-card__image {
+.feature-card-wrapper ::v-deep .feature-card__image {
   border-radius: 50%;
   object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.feature-card-wrapper ::v-deep .feature-card:hover .feature-card__image {
+  transform: scale(1.05);
+}
+
+.feature-card-wrapper ::v-deep .feature-card__content {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.feature-card-wrapper ::v-deep .feature-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.feature-card-wrapper ::v-deep .feature-card__description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #cccccc;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Estados */
@@ -115,19 +180,38 @@ export default {
 @media (max-width: 1024px) {
   .grid-layout {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: minmax(200px, auto);
+    gap: 1.5rem;
     padding: 2rem;
+  }
+  
+  .feature-card-wrapper ::v-deep .feature-card {
+    min-height: 360px;
+  }
+  
+  .feature-card-wrapper ::v-deep .feature-card__image-container {
+    width: 160px;
+    height: 160px;
   }
 }
 
 @media (max-width: 640px) {
   .grid-layout {
     grid-template-columns: 1fr;
-    grid-auto-rows: auto;
     gap: 1.5rem;
     padding: 1.5rem;
+    max-width: 400px;
+    margin: 0 auto;
   }
-
+  
+  .feature-card-wrapper ::v-deep .feature-card {
+    min-height: 340px;
+  }
+  
+  .feature-card-wrapper ::v-deep .feature-card__image-container {
+    width: 140px;
+    height: 140px;
+  }
+  
   .grid-cell {
     justify-content: center;
   }
